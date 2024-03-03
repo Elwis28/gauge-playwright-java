@@ -15,8 +15,7 @@ public class DriverFactory {
         browser = browserType.launch(new BrowserType.LaunchOptions()
                 .setChannel("chrome")
                 .setHeadless(false)
-                .setArgs(List.of("--start-maximized"))
-                .setSlowMo(500));
+                .setArgs(List.of("--start-maximized")));
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
         page = context.newPage();
         return page;
