@@ -11,12 +11,15 @@ public class DriverFactory {
     public static Page page;
 
     public static Page getBrowser() {
-        BrowserType browserType = Playwright.create().chromium();
-        browser = browserType.launch(new BrowserType.LaunchOptions()
+        browser = Playwright.create().chromium().launch(new BrowserType.LaunchOptions()
                 .setChannel("chrome")
-                .setHeadless(false)
+                .setHeadless(Boolean.parseBoolean(System.getenv("headless")))
                 .setArgs(List.of("--start-maximized")));
-        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
+        if(System.getenv("headless").equals("true")){
+            context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
+        } else{
+            context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
+        }
         page = context.newPage();
         return page;
     }
