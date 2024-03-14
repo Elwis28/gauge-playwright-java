@@ -9,7 +9,7 @@ import static factory.InitializeBrowser.page;
 
 public class LoginPageSteps {
 
-    LoginPage loginPage = new LoginPage(page);
+    private LoginPage loginPage = new LoginPage(page);
 
     @Step("The user logs into the page.")
     public void setLanguageVowels() {

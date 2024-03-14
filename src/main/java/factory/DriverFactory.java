@@ -14,7 +14,7 @@ public class DriverFactory {
         browser = Playwright.create().chromium().launch(new BrowserType.LaunchOptions()
                 .setChannel("chrome")
                 .setHeadless(Boolean.parseBoolean(System.getenv("headless")))
-                .setArgs(List.of("--start-maximized")));
+                .setArgs(List.of("--start-maximized", "--use-gl=egl")));
         if(System.getenv("headless").equals("true")){
             context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         } else{
